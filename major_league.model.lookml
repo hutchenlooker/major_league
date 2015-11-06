@@ -27,6 +27,11 @@
       relationship: many_to_one
       type: inner
       sql_on: ${Batting.bat_id} = ${players.id}
+    
+    - join: games
+      type: left_outer 
+      sql_on: ${Batting.game_id} = ${games.game_id}
+      relationship: many_to_one
 
 - explore: rosters
   joins:
@@ -36,17 +41,17 @@
       relationship: many_to_one
 
 
-- explore: subs
-  joins:
-    - join: events
-      type: left_outer 
-      sql_on: ${subs.event_id} = ${events.run3_origin_event_id}
-      relationship: many_to_one
-
-    - join: games
-      type: left_outer 
-      sql_on: ${subs.game_id} = ${games.game_id}
-      relationship: many_to_one
+# - explore: subs
+#   joins:
+#     - join: events
+#       type: left_outer 
+#       sql_on: ${subs.event_id} = ${events.run3_origin_event_id}
+#       relationship: many_to_one
+# 
+#     - join: games
+#       type: left_outer 
+#       sql_on: ${subs.game_id} = ${games.game_id}
+#       relationship: many_to_one
 
 
 # - explore: games

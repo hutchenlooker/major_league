@@ -1,6 +1,6 @@
 - view: events
   fields:
-# 
+
 #   - dimension: run3_origin_event_id
 #     primary_key: true
 #     type: int
@@ -564,7 +564,7 @@
 # 
   - measure: count
     type: count
-    drill_fields: [run3_origin_event_id, games.game_id, events.run3_origin_event_id, events.count, subs.count]
+    drill_fields: []
 
   - measure: at_bats
     type: count
@@ -581,6 +581,6 @@
   
   - measure: batting_avg
     type: number
-    #value_format: '%0.3f'
+    value_format: '0.000'
     sql: ${hits} / ${at_bats}
     
