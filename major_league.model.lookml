@@ -16,6 +16,18 @@
       relationship: many_to_one
       sql_on: ${events.event_cd} = %{lkup_cd_event.value_cd}
 
+      
+
+- explore: Batting 
+  from: events
+  joins:
+  
+    - join: players
+      view_label: Batting
+      relationship: many_to_one
+      type: inner
+      sql_on: ${Batting.bat_id} = ${players.id}
+
 - explore: rosters
   joins:
     - join: teams

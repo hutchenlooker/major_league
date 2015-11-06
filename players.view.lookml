@@ -16,7 +16,7 @@
     sql: ${TABLE}.last
     
   - dimension: full_name
-    sql: ${last} || ', ' ||${first}
+    sql: concat(${last}, ', ', ${first})
 
   - measure: count
     type: count

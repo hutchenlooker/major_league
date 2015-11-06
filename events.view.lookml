@@ -222,9 +222,14 @@
 #     type: int
 #     sql: ${TABLE}.GAME_PA_CT
 # 
-#   - dimension: h_cd
-#     type: int
-#     sql: ${TABLE}.H_CD
+  - dimension: h_cd
+    hidden: true
+    type: int
+    sql: ${TABLE}.H_CD
+    
+  - dimension: is_hit
+    type: yesno
+    sql: ${h_cd} > 0
 
   - dimension: home_score_ct
     type: int
@@ -561,3 +566,21 @@
     type: count
     drill_fields: [run3_origin_event_id, games.game_id, events.run3_origin_event_id, events.count, subs.count]
 
+  - measure: at_bats
+    type: count
+
+  - measure: hits
+    type: count
+    filters:
+      is_hit: yes
+  
+  - measure: home_runs
+    type: count
+    filters:
+      h_cd: 4
+  
+  - measure: batting_avg
+    type: number
+    #value_format: '%0.3f'
+    sql: ${hits} / ${at_bats}
+    
