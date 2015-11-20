@@ -132,15 +132,24 @@
     
   - dimension_group: game_dt
     type: time
-    timeframes: [date, month, year]
+    timeframes: [date, day_of_week, week_of_year, month, month_num, year]
     sql: | 
       CASE LENGTH(GAME_DT) 
         WHEN 6 THEN str_to_date(CAST(GAME_DT as char), '%y%m%d')
         WHEN 8 THEN str_to_date(CAST(GAME_DT as char), '%Y%m%d')
         ELSE NULL
       END
-    
-    
+      
+  - dimension: game_day_of_week
+    sql_case:
+      Monday: ${game_dt_day_of_week} = 'Monday'
+      Tuesday: ${game_dt_day_of_week} = 'Tuesday'
+      Wednesday: ${game_dt_day_of_week} = 'Wednesday'
+      Thursday: ${game_dt_day_of_week} = 'Thursday'
+      Friday: ${game_dt_day_of_week} = 'Friday'
+      Saturday: ${game_dt_day_of_week} = 'Saturday'
+      Sunday: ${game_dt_day_of_week} = 'Sunday'
+      unknown: true
 
   - dimension: game_dy
     sql: ${TABLE}.GAME_DY
@@ -259,8 +268,8 @@
 #     type: int
 #     sql: ${TABLE}.MINUTES_GAME_CT
 # 
-#   - dimension: park_id
-#     sql: ${TABLE}.PARK_ID
+  - dimension: park_id
+    sql: ${TABLE}.PARK_ID
 # 
 #   - dimension: pitches_record_cd
 #     sql: ${TABLE}.PITCHES_RECORD_CD
@@ -308,3 +317,18 @@
 #     type: count
 #     drill_fields: [game_id, events.count, subs.count]
 # 
+
+  - measure: Total_Attendence
+    type: sum
+    sql: ${attend_park_ct}
+    
+  - measure: count
+    type: count
+    
+#   - measure: count_distinct
+#     type: count_distinct
+#     sql: ${game_id}
+    
+  - measure: Attendance_per_Game
+    type: number
+    sql: ${Total_Attendence} / ${count}

@@ -3,23 +3,25 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
-- explore: events
-  joins:
-    
-    - join: games
-      type: left_outer 
-      sql_on: ${events.game_id} = ${games.game_id}
-      relationship: many_to_one
-    
-    - join: lkup_cd_event
-      type: inner
-      relationship: many_to_one
-      sql_on: ${events.event_cd} = %{lkup_cd_event.value_cd}
-
-      
+# - explore: events
+#   joins:
+#     
+#     - join: games
+#       type: left_outer 
+#       sql_on: ${events.game_id} = ${games.game_id}
+#       relationship: many_to_one
+#     
+#     - join: lkup_cd_event
+#       type: inner
+#       relationship: many_to_one
+#       sql_on: ${events.event_cd} = %{lkup_cd_event.value_cd}
+# 
+#       
 
 - explore: Batting 
   from: events
+  ## filter on only batting events
+  sql_always_where: bat_event_fl = 'T'
   joins:
   
     - join: players
@@ -32,6 +34,11 @@
       type: left_outer 
       sql_on: ${Batting.game_id} = ${games.game_id}
       relationship: many_to_one
+    
+    - join: parkcode
+      type: inner
+      relationship: many_to_one
+      sql_on: ${games.park_id} = ${parkcode.parkid}
 
 - explore: rosters
   joins:
@@ -89,7 +96,7 @@
 # - explore: lkup_id_home
 # 
 # - explore: lkup_id_last
-# 
+# # 
 # - explore: parkcode
 
 

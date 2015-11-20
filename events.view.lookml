@@ -48,17 +48,17 @@
 #   - dimension: ass9_fld_cd
 #     type: int
 #     sql: ${TABLE}.ASS9_FLD_CD
+# # 
+#   - dimension: away_score_ct
+#     type: int
+#     sql: ${TABLE}.AWAY_SCORE_CT
 # 
-  - dimension: away_score_ct
-    type: int
-    sql: ${TABLE}.AWAY_SCORE_CT
-
-  - dimension: away_team_id
-    sql: ${TABLE}.AWAY_TEAM_ID
-
-  - dimension: balls_ct
-    type: int
-    sql: ${TABLE}.BALLS_CT
+#   - dimension: away_team_id
+#     sql: ${TABLE}.AWAY_TEAM_ID
+# 
+#   - dimension: balls_ct
+#     type: int
+#     sql: ${TABLE}.BALLS_CT
 
 #   - dimension: base1_run_id
 #     sql: ${TABLE}.BASE1_RUN_ID
@@ -81,9 +81,9 @@
 #   - dimension: bat_dest_id
 #     type: int
 #     sql: ${TABLE}.BAT_DEST_ID
-# 
-  - dimension: bat_event_fl
-    sql: ${TABLE}.BAT_EVENT_FL
+# # 
+#   - dimension: bat_event_fl
+#     sql: ${TABLE}.BAT_EVENT_FL
 # 
 #   - dimension: bat_fate_id
 #     type: int
@@ -93,16 +93,17 @@
 #     type: int
 #     sql: ${TABLE}.BAT_FLD_CD
 # 
-#   - dimension: bat_hand_cd
-#     sql: ${TABLE}.BAT_HAND_CD
+  - dimension: batting_hand
+    sql: ${TABLE}.BAT_HAND_CD
 # 
 #   - dimension: bat_home_id
 #     type: int
 #     sql: ${TABLE}.BAT_HOME_ID
-# 
+
   - dimension: bat_id
+    hidden: true
     sql: ${TABLE}.BAT_ID
-# 
+
 #   - dimension: bat_in_hold_id
 #     sql: ${TABLE}.BAT_IN_HOLD_ID
 # 
@@ -125,15 +126,15 @@
 # 
 #   - dimension: bat_start_fl
 #     sql: ${TABLE}.BAT_START_FL
+# # 
+#   - dimension: bat_team_id
+#     sql: ${TABLE}.BAT_TEAM_ID
 # 
-  - dimension: bat_team_id
-    sql: ${TABLE}.BAT_TEAM_ID
-
-  - dimension: battedball_cd
-    sql: ${TABLE}.BATTEDBALL_CD
-
-  - dimension: battedball_loc_tx
-    sql: ${TABLE}.BATTEDBALL_LOC_TX
+#   - dimension: battedball_cd
+#     sql: ${TABLE}.BATTEDBALL_CD
+# 
+#   - dimension: battedball_loc_tx
+#     sql: ${TABLE}.BATTEDBALL_LOC_TX
 # 
 #   - dimension: bunt_fl
 #     sql: ${TABLE}.BUNT_FL
@@ -172,24 +173,26 @@
 # 
   - dimension: event_cd
     type: int
+    hidden: true
     sql: ${TABLE}.EVENT_CD
 
   - dimension: event_id
     primary_key: true
     type: int
-    # hidden: true
+    hidden: true
     sql: ${TABLE}.EVENT_ID
 # 
   - dimension: event_outs_ct
     type: int
+    hidden: true
     sql: ${TABLE}.EVENT_OUTS_CT
-
-  - dimension: event_runs_ct
-    type: int
-    sql: ${TABLE}.EVENT_RUNS_CT
-
-  - dimension: event_tx
-    sql: ${TABLE}.EVENT_TX
+# 
+#   - dimension: event_runs_ct
+#     type: int
+#     sql: ${TABLE}.EVENT_RUNS_CT
+# 
+#   - dimension: event_tx
+#     sql: ${TABLE}.EVENT_TX
 # 
 #   - dimension: fate_runs_ct
 #     type: int
@@ -212,7 +215,7 @@
 #     sql: ${TABLE}.GAME_END_FL
 # 
   - dimension: game_id
-    # hidden: true
+    hidden: true
     sql: ${TABLE}.GAME_ID
 # 
 #   - dimension: game_new_fl
@@ -226,21 +229,17 @@
     hidden: true
     type: int
     sql: ${TABLE}.H_CD
-    
-  - dimension: is_hit
-    type: yesno
-    sql: ${h_cd} > 0
-
-  - dimension: home_score_ct
-    type: int
-    sql: ${TABLE}.HOME_SCORE_CT
-
-  - dimension: home_team_id
-    sql: ${TABLE}.HOME_TEAM_ID
 # 
-#   - dimension: inn_ct
+#   - dimension: home_score_ct
 #     type: int
-#     sql: ${TABLE}.INN_CT
+#     sql: ${TABLE}.HOME_SCORE_CT
+# 
+#   - dimension: home_team_id
+#     sql: ${TABLE}.HOME_TEAM_ID
+# 
+  - dimension: inn_ct
+    type: int
+    sql: ${TABLE}.INN_CT
 # 
 #   - dimension: inn_end_fl
 #     sql: ${TABLE}.INN_END_FL
@@ -258,10 +257,10 @@
 # 
 #   - dimension: leadoff_fl
 #     sql: ${TABLE}.LEADOFF_FL
-# 
-  - dimension: outs_ct
-    type: int
-    sql: ${TABLE}.OUTS_CT
+# # 
+#   - dimension: outs_ct
+#     type: int
+#     sql: ${TABLE}.OUTS_CT
 # 
 #   - dimension: pa_ball_ct
 #     type: int
@@ -322,9 +321,9 @@
 # 
 #   - dimension: ph_fl
 #     sql: ${TABLE}.PH_FL
-# 
-#   - dimension: pit_hand_cd
-#     sql: ${TABLE}.PIT_HAND_CD
+
+  - dimension: pitching_hand
+    sql: ${TABLE}.PIT_HAND_CD
 # 
 #   - dimension: pit_id
 #     sql: ${TABLE}.PIT_ID
@@ -381,6 +380,7 @@
 #     sql: ${TABLE}.PR_RUN3_FL
 # 
   - dimension: rbi_ct
+    hidden: true
     type: int
     sql: ${TABLE}.RBI_CT
 # 
@@ -545,10 +545,10 @@
 #   - dimension: start_fld_score_ct
 #     type: int
 #     sql: ${TABLE}.START_FLD_SCORE_CT
-# 
-  - dimension: strikes_ct
-    type: int
-    sql: ${TABLE}.STRIKES_CT
+# # 
+#   - dimension: strikes_ct
+#     type: int
+#     sql: ${TABLE}.STRIKES_CT
 # 
 #   - dimension: tp_fl
 #     sql: ${TABLE}.TP_FL
@@ -562,10 +562,19 @@
 #   - dimension: wp_fl
 #     sql: ${TABLE}.WP_FL
 # 
-  - measure: count
-    type: count
-    drill_fields: []
 
+  - dimension: is_hit
+    type: yesno
+    sql: ${h_cd} > 0
+
+  - dimension: on_base
+    type: yesno
+    sql: ${event_cd} in (14, 15, 16, 20, 21, 22, 23)
+
+  - dimension: is_strikeout
+    type: yesno
+    sql: ${event_cd} = 3
+############################### BATTING STATISTICS #############################
   - measure: at_bats
     type: count
 
@@ -574,13 +583,56 @@
     filters:
       is_hit: yes
   
-  - measure: home_runs
-    type: count
-    filters:
-      h_cd: 4
-  
   - measure: batting_avg
     type: number
     value_format: '0.000'
     sql: ${hits} / ${at_bats}
     
+  - measure: runs_batted_in
+    type: sum
+    sql: ${rbi_ct}
+  
+  - measure: on_base_count
+    type: count
+    hidden: true
+    filters:
+      on_base: yes
+  
+  - measure: outs
+    type: sum
+    sql: ${event_outs_ct}
+  
+  - measure: strikeouts
+    type: count
+    filters:
+      is_strikeout: yes
+  
+  - measure: on_base_percentage
+    type: number
+    value_format: '0.000'
+    sql: ${on_base_count} / ${at_bats}
+
+  - measure: singles
+    type: count
+    filters:
+      h_cd: 1
+
+  - measure: doubles
+    type: count
+    filters:
+      h_cd: 2
+
+  - measure: triples
+    type: count
+    filters:
+      h_cd: 3
+  
+  - measure: home_runs
+    type: count
+    filters:
+      h_cd: 4
+      
+  - measure: slugging_percentage
+    type: number
+    value_format: '0.000'
+    sql: (${singles} + (2 * ${doubles}) + (3 * ${triples}) + (4 * ${home_runs})) / ${at_bats}
