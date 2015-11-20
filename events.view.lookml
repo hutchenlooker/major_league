@@ -12,7 +12,7 @@
 #   - dimension: ass10_fld_cd
 #     type: int
 #     sql: ${TABLE}.ASS10_FLD_CD
-# 
+# blah blah blah
 #   - dimension: ass1_fld_cd
 #     type: int
 #     sql: ${TABLE}.ASS1_FLD_CD
