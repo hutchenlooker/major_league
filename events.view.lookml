@@ -95,6 +95,9 @@
 # 
   - dimension: batting_hand
     sql: ${TABLE}.BAT_HAND_CD
+    
+  - dimension: batting_hand2
+    sql: ${TABLE}.BAT_HAND_CD
 # 
 #   - dimension: bat_home_id
 #     type: int
