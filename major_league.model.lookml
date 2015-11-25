@@ -1,5 +1,7 @@
 - connection: mlb
 
+# ERIC HUTCHESON: 11/18/15: THIS WAS A PRACTICE MODEL BUILT OUT DURING MY NEW HIRE RAMP PROCESS
+
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
